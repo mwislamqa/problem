@@ -4,28 +4,27 @@ package Base.com;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 
 	public static WebDriver driver;
 	public static Properties pop;
-	FileInputStream file;
+	
 
 	public Base() {
 
 		pop = new Properties();
-
+		FileInputStream file=null;
 		try {
 			file = new FileInputStream(
-					"C:\\EclipseWork space\\batch1\\Automation\\src\\main\\java\\config\\config.properties");
+					"C:\\Users\\md islam\\git\\repository11\\Automation\\src\\main\\java\\config\\config.properties");
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
@@ -60,10 +59,11 @@ public class Base {
 	public static void initialize() {
 
 		String webBrowser = pop.getProperty("browser");
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		System.out.println(webBrowser);
+		//WebDriverManager.chromedriver().setup();
+	//	driver = new ChromeDriver();
 
-		if (webBrowser.equalsIgnoreCase(pop.getProperty("chrome"))) {
+		if (webBrowser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (webBrowser.equalsIgnoreCase("Firefox")) {
@@ -73,9 +73,12 @@ public class Base {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		}
-
+		
 		driver.get(pop.getProperty("url"));
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		
 
 	}
 

@@ -22,13 +22,13 @@ public class Runner extends Base{
 	public HomePage hm;
 
 	
-	  Runner(){ 
+	 public Runner(){ 
 		  super(); 
 		  }
 	//@Parameters("Browser") 
 	@BeforeTest
 	public void setup() {
-	new Base();
+
 	initialize();//google.
 		
 		hm= new HomePage();
