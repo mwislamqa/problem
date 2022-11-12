@@ -14,6 +14,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.utils.Common;
+
 import Base.com.Base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import page.com.HomePage;
@@ -34,20 +37,16 @@ public class Runner extends Base{
 		hm= new HomePage();
 		
 	}@Test(priority=1)
-	public void titelTest() {
+	public void titelTest() throws IOException {
 		String tt=hm.logopageTitle();
 		Assert.assertEquals(tt, "Google");
+		//Common.takeScreenshot();
 		
 	}
 	@Test(priority=2)
 	public void input() throws IOException {
 		hm.search();
-		 TakesScreenshot sc=(TakesScreenshot) driver; 
-		  File src =
-		  sc.getScreenshotAs(OutputType.FILE); 
-		  File destFile = new
-		  File(".\\target\\pic.png");
-		  FileUtils.copyFile(src, destFile);
+		Common.takeScreenshot();
 		
 		 // Assert.assertTrue(true);
 	}
