@@ -13,9 +13,10 @@ public class Common extends Base{
 
 	
 	public static void takeScreenshot() throws IOException {
-		 TakesScreenshot sc=(TakesScreenshot) driver; 
+		 TakesScreenshot sc=(TakesScreenshot)driver; 
 		  File src =sc.getScreenshotAs(OutputType.FILE); 
 		  String currentDir= System.getProperty("user.dir");
+		  
 		 // File destFile = new File(".\\target\\pic.png");
 		  FileUtils.copyFile(src, new File(currentDir +"/screenshots/"+ System.currentTimeMillis()+".png"));
 		  //currentDir +"/screenshots/"+ System.currentTimeMillis()+".png"
